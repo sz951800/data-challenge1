@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Charts</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script> <!-- Include D3.js -->
+    <style>
+         body { 
+            background-color: #f0f0f0;}
+
+              .chart-container {
+            display: flex;
+            justify-content: center;
+            margin-left: 50px /* Aligns the charts to the center */
+        }
+        .chart-wrapper {
+            width: 200px; /* Adjust width for each chart */
+            height: 300px; /* Adjust height for each chart */
+            margin: -20px; /* Adds space around each chart */
+            margin-left: 80px;
+            margin-top: 100px
+        }
+        .chart {
+             /* Adjust the width and height as needed */
+        width: 600px;
+        height: 250px;
+        position: absolute; /* Use absolute positioning */
+        top: 600px; /* Adjust the top position */
+        left: 200px; 
+        }
+
+        
+
+        .first-column {
+        width: 150px; /* Adjust this value as needed */
+    }
+        #bar-chart-wrapper {
+        position: absolute; /* Allows manual positioning */
+        left: -250px; /* Move to the left */
+        top: -20px; /* Move down */}
+
+        #table-container {
+        position: absolute; /* Use absolute positioning */
+        top: 280px; /* Adjust the top position */
+        left: 20px; /* Adjust the left position */
+       
+    }
+    
+
+    #donut-chart-container {
+        /* Adjust the width and height as needed */
+        width: 600px;
+        height: 250px;
+        position: absolute; /* Use absolute positioning */
+        top: 120px; /* Adjust the top position */
+        left: 500px; 
+    }
+
+   
+    .pie-chart-container {
+    position: absolute;
+    top:  -20px;
+    left: 300px
+}
+
+.pie-chart-container1 {
+    position: absolute;
+    top:  -20px;
+    left: 550px
+}
+
+.pie-chart-container2 {
+    position: absolute;
+    top:  -20px;
+    left: 800px
+}
+
+
+.big-number {
+    position: absolute; /* Use absolute positioning */
+    top: 450px; /* Adjust the top position */
+    left: 0px; 
+}
+
+.big-number-row {
+        position: absolute;
+        top: 40px;
+        left: 10px; 
+        width: 200px; /* Ensure sufficient width */
+    }
+
+    .big-number-row1 {
+        position: absolute;
+        top: 40px;
+        left: 230px; /* Adjust as needed */
+        width: 300px; /* Ensure sufficient width */
+    }
+
+    .big-number-row2 {
+        position: absolute;
+        top: 40px;
+        left: 450px; /* Adjust as needed */
+        width: 300px; /* Ensure sufficient width */
+    }
+
+.big-number-label {
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+}
+
+.big-number-value {
+    font-size: 30px;
+    position: absolute;
+    top: 40px; 
+    left: 30px;
+}
+
+
+#chart-explanation {
+    position: absolute;
+    font-size: 14px;
+    /* Remove position, top, and left properties */
+    top: 1000px;
+    left: 600px;
+     /* Add some space above the explanation */
+    text-align: center; /* Optional: Center the text */
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+     /* Adjust the height as needed for vertical centering */
+}
+
+    </style>
+</head>
+<body>
+
+
+
+    <div style="background-color: #ADD8E6; padding: 10px; text-align: left;">
+        <a href="index3.html">Home Page</a>
+        <span style="margin-left: 50px;">
+            <a href="index5.html" style="color: #707070;">Detailed Page</a>
+        </span>
+    </div>
+    
+
+    <div class="center-content">
+        <h1>More details about the delivered properties</h1>
+        <p>For the charts on this page, data from both markets is aggregated, providing an overview of delivered properties' characteristics such as delivered time, effective rent growth, market grade.</p>
+    </div>
+
+    <div class="top-container">
+        <div id="table-container"></div>
+        <div id="donut-chart-container" class="chart-wrapper"></div> <!-- Donut Chart container -->
+    </div>
+
+    <div class="big-number">
+        <div class="big-number-row">
+            <div class="big-number-label" >Total Delivered Properties:</div>
+            <div class="big-number-value">298</div>
+        </div>
+        <div class="big-number-row1">
+            <div class="big-number-label">Average Delivered Time:</div>
+            <div class="big-number-value">13 months</div>
+        </div>
+        <div class="big-number-row2">
+            <div class="big-number-label">% of Negative Rent Growth:</div>
+            <div class="big-number-value">34.9%</div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="chart-container">
+        <!-- Bar Chart Container -->
+        <div id="bar-chart-wrapper" class="chart-wrapper">
+            <div id="bar-chart" class="chart"></div>
+        </div>
+
+        <!-- Pie Chart Containers -->
+        <div class="chart-wrapper pie-chart-container">
+            <canvas id="pieChart1" class="chart" width="300" height="300"></canvas>
+        </div>
+        <div class="chart-wrapper pie-chart-container1">
+            <canvas id="pieChart2" class="chart" width="300" height="300"></canvas>
+        </div>
+        <div class="chart-wrapper pie-chart-container2">
+            <canvas id="pieChart3" class="chart" width="300" height="300"></canvas>
+        </div>
+
+    </div>
+
+    <div id="chart-explanation">
+       
+    </div>
+    
+    <script src="bar-chart.js"></script> <!-- Your bar chart JavaScript file -->
+    <script src="piechartt.js"></script>
+    <script src="summarytable.js"></script>
+    <script src="donutchart.js"></script> 
+     <!-- Your pie chart JavaScript file -->
+</body>
+</html>
+
+
+
+

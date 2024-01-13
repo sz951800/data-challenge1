@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Line Chart</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+        /* Tooltip styling */
+        #tooltip {
+            position: absolute;
+            visibility: hidden;
+            padding: 8px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            pointer-events: none; /* Tooltip should not interfere with mouse events */
+        }
+
+        /* Additional styling for the dot and line, if needed */
+        .dot circle {
+            fill: steelblue;
+            stroke: white;
+            stroke-width: 2;
+        }
+
+        .line {
+            fill: none;
+            stroke: steelblue;
+            stroke-width: 2;
+        }
+    </style>
+</head>
+<body>
+    <div id="line-chart-container"></div>
+    <div id="tooltip"></div>
+    <script src="threemonth_lengthchart.js"></script>
+
+    <div id="line-chart-container"></div>
+    <div id="tooltip"></div>
+    <script src="sixmonth_lengthchart.js"></script>
+
+
+    <div id="line-chart-container"></div>
+    <div id="tooltip"></div>
+    <script src="twelvemonth_lengthchart.js"></script>
+    
+    
+</body>
+</html>

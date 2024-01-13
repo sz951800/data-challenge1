@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Charts</title>
+    <!-- Other script and link tags -->
+    <style>
+        /* Container for both charts */
+        .charts-container {
+            display: flex; /* Use flexbox layout */
+            justify-content: center; /* Center charts horizontally */
+            align-items: flex-start; /* Align charts to the start of the cross axis */
+            margin-top: 20px; /* Space from the top of the page */
+        }
+
+        /* Individual chart wrappers */
+        .chart-wrapper {
+            width: calc(50% - 10px); /* Subtract margin from 50% width */
+            margin: 0 5px; /* Margin on both sides */
+        }
+
+        /* Style for the canvas (chart) elements */
+        .chart {
+            width: 100%; /* Use the full width of the chart wrapper */
+            height: auto; /* Adjust height as necessary */
+        }
+
+        /* Ensure the charts are not too small on narrow screens */
+        @media (max-width: 600px) {
+            .chart-wrapper {
+                width: 100%; /* Full width for small screens */
+                margin: 0 0 10px; /* Stack charts with space in between */
+            }
+        }
+        
+        /* Reset styles for elements that may interfere */
+        .pie-chart-container, #bar-chart-wrapper, #donut-chart-container, #table-container {
+            margin: 0; /* Reset any margin to 0 */
+            width: auto; /* Reset width to auto */
+            position: static; /* Reset position to static */
+            top: auto; /* Reset top to auto */
+            left: auto; /* Reset left to auto */
+        }
+
+        /* Additional common styles */
+        body {
+            font-family: Arial, sans-serif; /* Set a default font */
+        }
+
+        h1, p {
+            text-align: center; /* Center-align text for headings and paragraphs */
+        }
+
+        a {
+            color: #007bff; /* Set a default color for links */
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Underline links on hover for better visibility */
+        }
+    </style>
+</head>
+<body>
+    <!-- Other body content ... -->
+
+    <div class="charts-container">
+        <!-- Donut Chart Container -->
+        <div class="chart-wrapper">
+            <canvas id="donut-chart" class="chart"></canvas>
+        </div>
+        
+        <!-- Bar Chart Container -->
+        <div class="chart-wrapper">
+            <canvas id="bar-chart" class="chart"></canvas>
+        </div>
+    </div>
+
+
+    <div class="chart-container">
+        <!-- Bar Chart Container -->
+        <div id="bar-chart-wrapper" class="chart-wrapper">
+            <div id="bar-chart" class="chart"></div>
+        </div>
+
+        <!-- Pie Chart Containers -->
+        <div class="chart-wrapper pie-chart-container">
+            <canvas id="pieChart1" class="chart" width="300" height="300"></canvas>
+        </div>
+        <div class="chart-wrapper pie-chart-container">
+            <canvas id="pieChart2" class="chart" width="300" height="300"></canvas>
+        </div>
+        <div class="chart-wrapper pie-chart-container">
+            <canvas id="pieChart3" class="chart" width="300" height="300"></canvas>
+        </div>
+
+    </div>
+
+    <div id="chart-explanation">
+       
+    </div>
+    
+    
+    <script src="bar-chart1.js"></script>
+    <script src="bar-chart.js"></script> <!-- Your bar chart JavaScript file -->
+    <script src="piechartt.js"></script>
+    <script src="summarytable.js"></script>
+    <script src="donutchart.js"></script> 
+     <!-- Include your bar chart JavaScript file -->
+    <!-- Other script tags ... -->
+</body>
+</html>
+
+
+

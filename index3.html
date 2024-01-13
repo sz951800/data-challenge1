@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map and Chart Dashboard</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+        body { display: flex; flex-wrap: wrap;  position: relative; justify-content: center;
+            background-color: #f0f0f0;}
+        #dashboard-info {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 9999;
+    padding: 10px;
+    text-align: center; /* Center-align the text */
+}
+
+
+        #map-container { flex: 1; padding: 30px; display: flex; flex-direction: column; }
+        .map { height: 400px; width: 600px; margin-bottom: -20px; margin-top: 100px}
+       
+        #map2 {
+            position: absolute; /* Use absolute positioning */
+        top: 760px; /* Adjust the top position */
+        left: 30px; /* Adjust the left position */
+        width: 600px; /* Fixed width */
+        height: 400px; /* Fixed height */}
+
+
+        #map {
+            position: absolute; /* Use absolute positioning */
+        top: 120px; /* Adjust the top position */
+        left: 30px; /* Adjust the left position */
+        width: 600px; /* Fixed width */
+        height: 400px; /* Fixed height */}
+
+
+
+
+        #chart-container, #chart-container2 {
+            padding: 10px;
+            width: 600px; /* Fixed width */
+            height: 760px; /* Fixed height */
+            margin: 0 auto; /* Center in the page */
+            margin-bottom: 10px; /* Space between chart containers */
+        }
+
+        .chart-container, .chart-container2 {
+            display: none;
+            width: 100%; /* Full width of the parent container */
+            height: auto; /* Height adjusts to content */
+            margin-top: 80px;
+        }
+
+
+        #chart-container {
+        position: absolute; /* Use absolute positioning */
+        top: 200px; /* Adjust the top position */
+        left: 650px; /* Adjust the left position */
+        width: 600px; /* Fixed width */
+        height: 450px; /* Fixed height */
+    }
+
+        #chart-container2 {
+        position: absolute; /* Use absolute positioning */
+        top: 700px; /* Adjust the top position */
+        left: 650px; /* Adjust the left position */
+        width: 600px; /* Fixed width */
+        height: 1050px; /* Fixed height */
+    }
+
+        #three-month-container, #three-month-container2 {
+            display: block;
+        }
+
+        .button-container, .button-container2 {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3px;
+        }
+        .button-container button, .button-container2 button {
+            margin: 0 10px;
+        }
+
+        #dashboard-info {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    width: 100%; /* Stretch across the page */
+    z-index: 9999;
+    padding: 10px;
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+    
+
+    <div style="background-color:#ADD8E6;  padding: 10px; text-align: left; width: 100%;">
+        <a href="index3.html" style="margin-right: 50px; color: #707070;">Home Page</a>
+    <a href="index5.html" style = "margin-right: 50px" >Detailed Page</a>
+    </div>
+
+  
+
+    <div id="dashboard-info" style="height: 100px; width: 80%; max-width: 800px; margin: 0 auto; text-align: center;">
+        <h1>Property Lease-Up Summary Dashboard</h1>
+        <p>This dashboard presents an interactive overview of property statuses across two distinct markets. It showcases two maps, each marking all properties, with delivered properties distinguished by a different color. Users can examine rent growth trends over 3, 6, 12, and 24 months for each market, accessible through intuitive buttons. The secondary page provides detailed statistics and charts, specifically focusing on the delivered properties.</p>
+    </div>
+    
+
+
+    <div id="map-container" style="position: absolute; top: 110px; left: 0; right: 0;">
+        <h2 style="position: absolute; top: 150px; left: 250px;">Map for market 1</h2>
+        <div id="map" class="map"></div>
+    
+        <!-- Adjust the top position of Map 2 Title, considering the height of Map 1 and additional spacing -->
+        <h2 style="position: absolute; top: 630px; left: 250px;">Map for market 2</h2>
+        <div id="map2" class="map" style="top: 590px;"></div>
+    </div>
+    
+
+    <div id="chart-container">
+        <div id="three-month-container" class="chart-container">
+            <div id="line-chart-container-three"></div>
+            <div id="tooltip-three"></div>
+        </div>
+        <div id="six-month-container" class="chart-container">
+            <div id="line-chart-container-six"></div>
+            <div id="tooltip-six"></div>
+        </div>
+        <div id="twelve-month-container" class="chart-container">
+            <div id="line-chart-container-twelve"></div>
+            <div id="tooltip-twelve"></div>
+        </div>
+        <div class="button-container">
+            <button onclick="showChart('three')">Trailing 3-month rent growth</button>
+            <button onclick="showChart('six')">Trailing 6-month rent growth</button>
+            <button onclick="showChart('twelve')">Trailing 12-month rent growth</button>
+        </div>
+    </div>
+
+
+    <div id="chart-container2">
+        <div id="three-month-container2" class="chart-container2">
+            <div id="line-chart-container-three2"></div>
+            <div id="tooltip-three2"></div>
+        </div>
+        <div id="six-month-container2" class="chart-container2">
+            <div id="line-chart-container-six2"></div>
+            <div id="tooltip-six2"></div>
+        </div>
+        <div id="twelve-month-container2" class="chart-container2">
+            <div id="line-chart-container-twelve2"></div>
+            <div id="tooltip-twelve2"></div>
+        </div>
+        <div class="button-container2">
+            <button onclick="showChart2('three')">Trailing 3-month rent growth </button>
+            <button onclick="showChart2('six')">Trailing 6-month rent growth </button>
+            <button onclick="showChart2('twelve')">Trailing 12-month rent growth </button>
+        </div>
+    </div>
+
+    <!-- Include the map initialization scripts -->
+    <script src="map1.js"></script>
+    <script src="map2.js"></script>
+
+    <!-- Include the chart control scripts -->
+    <script src="threemonth_lengthchart.js"></script>
+    <script src="sixmonth_lengthchart.js"></script>
+    <script src="twelvemonth_lengthchart.js"></script>
+    <script src="threemonth_lengthchart2.js"></script>
+    <script src="sixmonth_lengthchart2.js"></script>
+    <script src="twelvemonthlengthchart2.js"></script>
+
+    <script>
+        // Function to control the display of charts
+        function showChart(chartName) {
+            var charts = document.getElementsByClassName('chart-container');
+            for (var i = 0; i < charts.length; i++) {
+                charts[i].style.display = 'none';
+            }
+            document.getElementById(chartName + '-month-container').style.display = 'block';
+        }
+
+        function showChart2(chartName) {
+            var charts = document.getElementsByClassName('chart-container2');
+            for (var i = 0; i < charts.length; i++) {
+                charts[i].style.display = 'none';
+            }
+            document.getElementById(chartName + '-month-container2').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Charts</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script> <!-- Include D3.js -->
+    <style>
+              .chart-container {
+            display: flex;
+            justify-content: center;
+            margin-left: 50px /* Aligns the charts to the center */
+        }
+        .chart-wrapper {
+            width: 200px; /* Adjust width for each chart */
+            height: 300px; /* Adjust height for each chart */
+            margin: -20px; /* Adds space around each chart */
+            margin-left: 80px;
+            margin-top: 100px
+        }
+        .chart {
+            width: 100%;
+            height: 100%;
+            margin-left: 10px;
+        }
+
+        
+
+        .first-column {
+        width: 150px; /* Adjust this value as needed */
+    }
+        #bar-chart-wrapper {
+        position: relative; /* Allows manual positioning */
+        left: -250px; /* Move to the left */
+        top: -20px; /* Move down */}
+
+        #table-container {
+        width: 50%; /* Adjust the width as needed */
+        margin-left: 10px;
+        height: 100px
+    }
+
+    #table-container table {
+        width: 100%; /* Make the table fill the container */
+        margin: 30px 0;
+
+    }
+    
+    .top-container {
+        display: flex;
+        justify-content: center; /* Center the contents horizontally */
+        align-items: flex-start; /* Align items to the top */
+    }
+
+    #table-container {
+        /* Adjust the width as needed, ensure it doesn't occupy full width */
+        width: 70%;
+        margin-right: 50px; 
+        margin-top: 70px;/* Add some space between the table and the donut chart */
+    }
+
+    #donut-chart-container {
+        /* Adjust the width and height as needed */
+        width: 600px;
+        height: 250px;
+        margin-left: -10px;
+        margin-right: 70px;
+        margin-top: 50px;
+    }
+   
+    .pie-chart-container {
+    margin-left: 100px ;
+    margin-top: 80px
+}
+
+.big-number {
+    display: flex; /* Enable flex container */
+    justify-content: flex-start; /* Align children to the start */
+    align-items: center; /* Align children vertically */
+    margin-top: 20px;
+    margin-left: 50px; /* Adjust left margin as needed */
+}
+
+.big-number-row {
+    display: flex; /* Enable flexbox for each row */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center-align items */
+    margin-right: 20px; /* Add some space between the items */
+}
+
+
+
+.big-number-label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.big-number-value {
+    font-size: 40px;
+    margin-top: 5px;
+}
+#chart-explanation {
+    /* Adjust the positioning as needed */
+    position: absolute;
+    top: 870px; /* Adjust the top position */
+    left: 500px; /* Adjust the left position */
+    font-size: 14px;
+    height: 150px; /* Increase the height as needed */
+    overflow: auto; 
+    
+}
+#chart-explanation {
+    font-size: 14px;
+    /* Remove position, top, and left properties */
+    margin-top: 80px;
+    margin-left: 20px;
+    margin-right: 20px;
+     /* Add some space above the explanation */
+    text-align: center; /* Optional: Center the text */
+}
+
+.center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+     /* Adjust the height as needed for vertical centering */
+}
+
+    </style>
+</head>
+<body>
+
+
+
+    <div style="background-color: #f2f2f2; padding: 10px; text-align: left;">
+        <a href="index3.html">Home Page</a>
+        <span style="margin-left: 50px;">
+            <a href="piechartview.html" style="color: #707070;">Detailed Page</a>
+        </span>
+    </div>
+    
+
+    <div class="center-content">
+        <h1>More details about the delivered properties</h1>
+        <p>For the charts on this page, data from both markets is aggregated, providing an overview of delivered properties' characteristics such as delivered time, effective rent growth, market grade.</p>
+    </div>
+
+    <div class="top-container">
+        <div id="table-container"></div>
+        <div id="donut-chart-container" class="chart-wrapper"></div> <!-- Donut Chart container -->
+    </div>
+
+    <div class="big-number">
+        <div class="big-number-row">
+            <div class="big-number-label">Total Delivered Properties:</div>
+            <div class="big-number-value">298</div>
+        </div>
+        <div class="big-number-row">
+            <div class="big-number-label">Average Delivered Time:</div>
+            <div class="big-number-value">13 months</div>
+        </div>
+        <div class="big-number-row">
+            <div class="big-number-label">% of Negative Rent Growth:</div>
+            <div class="big-number-value">34.9%</div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="chart-container">
+        <!-- Bar Chart Container -->
+        <div id="bar-chart-wrapper" class="chart-wrapper">
+            <div id="bar-chart" class="chart"></div>
+        </div>
+
+        <!-- Pie Chart Containers -->
+        <div class="chart-wrapper pie-chart-container">
+            <canvas id="pieChart1" class="chart" width="300" height="300"></canvas>
+        </div>
+        <div class="chart-wrapper pie-chart-container">
+            <canvas id="pieChart2" class="chart" width="300" height="300"></canvas>
+        </div>
+        <div class="chart-wrapper pie-chart-container">
+            <canvas id="pieChart3" class="chart" width="300" height="300"></canvas>
+        </div>
+
+    </div>
+
+    <div id="chart-explanation">
+       
+    </div>
+    
+    <script src="bar-chart.js"></script> <!-- Your bar chart JavaScript file -->
+    <script src="piechartt.js"></script>
+    <script src="summarytable.js"></script>
+    <script src="donutchart.js"></script> 
+     <!-- Your pie chart JavaScript file -->
+</body>
+</html>
+
+
+
